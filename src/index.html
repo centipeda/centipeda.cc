@@ -7,10 +7,46 @@
     <title>Joshua Cepeda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&family=Source+Serif+Pro:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;900&family=Source+Sans+Pro:wght@300;400;500&family=Source+Serif+Pro:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./index.css" >
 </head>
 <body>
-    Stuff here.
+    <div class="flex flex-row w-full h-full flex-wrap md:flex-nowrap">
+        <div class="basis-full md:basis-80 bg-slate-600 h-auto md:h-full p-5">
+            <ul class="md:ml-5 mt-5 text-4xl text-center md:text-left mono-font sidebar font-medium">
+                <li class="py-2"><a href="/">about me<span>_</span></a></li>
+                <li class="py-2"><a href="/">projects<span>_</span></a></li>
+                <li class="py-2"><a href="https://github.com/centipeda">github<span>_</span></a></li>
+            </ul>
+        </div>
+        <div class="basis-full bg-slate-400 h-full flex flex-col justify-center text-center">
+            <div class="mx-auto">
+                <svg x="0" y="0" width="700" height="100%" xlmns="http://www.w3.org/2000/svg" class="mx-auto">
+                    <style>
+                        text {
+                            font-size: 70pt;
+                            font-family: monospace;
+                            text-anchor: middle;
+                        }
+                    </style>
+                    <text x="50%" y="100" stroke="#000000" class="name">
+                        centipeda.cc
+                    </text>
+            </div>
+            <div class="text-xl">
+                <p> Hi, I'm Joshua. I'm a software developer in New York, and I'm interested in </p>
+                <p> embedded systems, web design, and video game development.</p>
+                <p class="mt-5 text-2xl font-medium">
+                    <a class="underline" href="https://github.com/centipeda/resume/raw/main/joshua_cepeda_fa2021.pdf">resume</a>
+                    <span class="mx-1 font-black">&middot;</span>
+                    <a class="underline" href="https://github.com/centipeda">github</a>
+                    <span class="mx-1 font-black">&middot;</span>
+                    <a class="underline" href="https://linkedin.com/centipeda">linkedin</a>
+                    <span class="mx-1 font-black">&middot;</span>
+                    <a class="underline" href="mailto:joshua.ka.cepeda@gmail.com">email</a>
+                    </p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

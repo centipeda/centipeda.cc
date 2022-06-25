@@ -6,3 +6,53 @@
 body {
     font-family: "Source Sans Pro";
 }
+
+html,body {
+    height: 100%;
+}
+
+.serif-font {
+    font-family: 'Source Serif Pro';
+}
+
+.mono-font {
+    font-family: 'Source Code Pro';
+}
+
+.name {
+    stroke-dasharray: 1000;
+    animation: dash 8s linear;
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 1200;
+        fill: #94a3b8;
+    }
+    20% {
+        fill: #94a3b8;
+    }
+    30% {
+        fill: #000000;
+    }
+    60% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.sidebar > li > a > span {
+    opacity: 0;
+}
+
+.sidebar > li:hover > a > span {
+    animation: blink 0.5s steps(1) infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
