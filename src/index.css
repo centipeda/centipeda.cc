@@ -5,6 +5,8 @@
 
 body {
     font-family: "Source Sans Pro";
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(48,48,130,1) 25%, #053b99 68%, rgba(150,212,253,1) 68%, rgba(150,212,253,1) 100%);
 }
 
 html,body {
@@ -19,40 +21,20 @@ html,body {
     font-family: 'Source Code Pro';
 }
 
-.name {
-    stroke-dasharray: 1000;
-    animation: dash 8s linear;
+.content {
+    background-color: hsl(210deg, 68%, 80%);
+    border: 3px solid black;
 }
 
-@keyframes dash {
-    0% {
-        stroke-dashoffset: 1200;
-        fill: #94a3b8;
-    }
-    20% {
-        fill: #94a3b8;
-    }
-    30% {
-        fill: #000000;
-    }
-    60% {
-        stroke-dashoffset: 0;
-    }
+.navbar {
+    border: 1px solid black; 
 }
 
-.sidebar > li > a > span {
-    opacity: 0;
+.nav-item {
+    transition: .1s;
 }
 
-.sidebar > li:hover > a > span {
-    animation: blink 0.5s steps(1) infinite;
-}
-
-@keyframes blink {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
+.nav-item:hover {
+    color: white;
+    background-color: black;
 }

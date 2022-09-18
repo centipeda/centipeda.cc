@@ -8,11 +8,11 @@ def create_app() -> Flask:
     app = Flask(__name__)
 
     @app.route('/', methods=['PUT'])
-    update_notepad():
+    def update_notepad():
         return ''
 
-    @app.route('/', methods=['GET')
-    show_notepad():
+    @app.route('/', methods=['GET'])
+    def show_notepad():
         return send_file('index.html')
     
     return app
