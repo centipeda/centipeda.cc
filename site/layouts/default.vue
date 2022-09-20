@@ -30,7 +30,6 @@ export default {
 </script>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500&family=Source+Sans+Pro:wght@300;400&display=swap');
 
     body {
         font-family: "Source Sans Pro";
