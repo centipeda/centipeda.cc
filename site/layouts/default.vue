@@ -18,16 +18,7 @@
                     <a class="basis-0 grow text-center nav-item" href="/">other</a>
                 </div>
             </div>
-            <div class="px-5">
-                <p>
-                    Hi, I'm Joshua Cepeda. I'm a software engineer in New York
-                    City. I like working with video games, embedded systems, and
-                    Web projects like this site. I also enjoy sea creatures, the
-                    piano, and long-form YouTube video essays.
-                </p>
-                <br>
-                <p>If you'd like to get in touch, you can e-mail me at joshua.ka.cepeda@gmail.com.</p>
-            </div>
+            <Nuxt />
         </div>
     </div>
 </template>
@@ -39,43 +30,42 @@ export default {
 </script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500&family=Source+Sans+Pro:wght@300;400&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500&family=Source+Sans+Pro:wght@300;400&display=swap');
+    body {
+        font-family: "Source Sans Pro";
+        background: rgb(2,0,36);
+        background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(48,48,130,1) 25%, #053b99 68%, rgba(150,212,253,1) 68%, rgba(150,212,253,1) 100%);
+    }
 
-body {
-    font-family: "Source Sans Pro";
-    background: rgb(2,0,36);
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(48,48,130,1) 25%, #053b99 68%, rgba(150,212,253,1) 68%, rgba(150,212,253,1) 100%);
-}
+    html,body {
+        height: 100%;
+    }
 
-html,body {
-    height: 100%;
-}
+    .serif-font {
+        font-family: 'Source Serif Pro';
+    }
 
-.serif-font {
-    font-family: 'Source Serif Pro';
-}
+    .mono-font {
+        font-family: 'Source Code Pro';
+    }
 
-.mono-font {
-    font-family: 'Source Code Pro';
-}
+    .content {
+        background-color: lightgray;
+        /* background-color: hsl(210deg, 68%, 80%); */
+        border: 3px solid black;
+    }
 
-.content {
-    background-color: hsl(210deg, 68%, 80%);
-    border: 3px solid black;
-}
+    .navbar {
+        border: 1px solid black; 
+    }
 
-.navbar {
-    border: 1px solid black; 
-}
+    .nav-item {
+        transition: .1s;
+    }
 
-.nav-item {
-    transition: .1s;
-}
-
-.nav-item:hover {
-    color: white;
-    background-color: black;
-}
-
+    .nav-item:hover {
+        color: white;
+        background-color: black;
+    }
 </style>
