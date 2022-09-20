@@ -7,9 +7,9 @@
             <div class="navbar mb-8 mt-5">
                 <div class="flex flex-row">
                     <a class="basis-0 grow text-center nav-item" href="/"> about </a>
-                    <a class="basis-0 grow text-center nav-item" href="/projects"> projects </a>
+                    <a class="basis-0 grow text-center nav-item" href="/"> projects </a>
                     <a class="basis-0 grow text-center nav-item" href="https://github.com/centipeda">github</a>
-                    <a class="basis-0 grow text-center nav-item" href="/resume"> resume </a>
+                    <a class="basis-0 grow text-center nav-item" href="/"> resume </a>
                 </div>
                 <div class="flex flex-row">
                     <a class="basis-0 grow text-center nav-item" href="/">creatures</a>
