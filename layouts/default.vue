@@ -13,8 +13,8 @@
                 </div>
                 <div class="flex flex-row">
                     <a class="basis-0 grow text-center nav-item" href="/">creatures</a>
-                    <a class="basis-0 grow text-center nav-item" href="/">other</a>
-                    <a class="basis-0 grow text-center nav-item" href="/">other</a>
+                    <a class="basis-0 grow text-center nav-item" href="https://cnti.cc">pastebin</a>
+                    <a class="basis-0 grow text-center nav-item" href="https://spells.centipeda.cc">spellbook</a>
                     <a class="basis-0 grow text-center nav-item" href="/">other</a>
                 </div>
             </div>
@@ -33,12 +33,21 @@ export default {
 
     body {
         font-family: "Source Sans Pro";
-        background: rgb(2,0,36);
-        background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(48,48,130,1) 25%, #053b99 68%, rgba(150,212,253,1) 68%, rgba(150,212,253,1) 100%);
+        background: linear-gradient(0deg, rgba(2,0,36,1) 0%, 
+            rgba(48,48,130,1) 25%, 
+            #053b99 67.5%, 
+            white 67.5%, 
+            white 68%, 
+            rgba(150,212,253,1) 68%, 
+            rgba(150,212,253,1) 100%);
     }
 
     html,body {
         height: 100%;
+    }
+
+    html {
+        background: rgba(2, 0, 36, 1);
     }
 
     .serif-font {
