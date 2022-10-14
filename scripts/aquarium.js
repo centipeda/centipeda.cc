@@ -69,8 +69,6 @@ export function jellyfish(container, options) {
     const springVelocity = 0;
     const springVariability = 0.75;
     
-    console.log(posOffset);
-
     var jelly = document.createElement('div');
     jelly.classList.add('jellyfish');
     jelly.style.position = 'absolute';
