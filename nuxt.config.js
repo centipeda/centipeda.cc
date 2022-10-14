@@ -53,5 +53,8 @@ export default {
         autoprefixer: {},
       },
     },
+    splitChunks: {
+      layouts: true
+    },
   }
 }
