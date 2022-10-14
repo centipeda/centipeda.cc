@@ -6,7 +6,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "gen": "nuxt generate"
   },
   "dependencies": {
     "animejs": "^3.2.1",
