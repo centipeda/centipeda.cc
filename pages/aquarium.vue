@@ -81,6 +81,9 @@ function animate(container) {
 }
 
 export default {
+    head: {
+        title: 'aquarium demo',
+    },
     layout: 'empty',
     mounted() {
         if(process.browser) {

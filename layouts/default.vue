@@ -12,7 +12,7 @@
                     <a class="basis-0 grow text-center nav-item" href="/"> resume </a>
                 </div>
                 <div class="flex flex-row">
-                    <a class="basis-0 grow text-center nav-item" href="/">creatures</a>
+                    <a class="basis-0 grow text-center nav-item" href="/aquarium">aquarium</a>
                     <a class="basis-0 grow text-center nav-item" href="https://cnti.cc">pastebin</a>
                     <a class="basis-0 grow text-center nav-item" href="https://spells.centipeda.cc">spellbook</a>
                     <a class="basis-0 grow text-center nav-item" href="/">other</a>
