@@ -10,6 +10,7 @@
 <script>
 
 import { jellyfish, eel } from '@/assets/aquarium.js';
+import { pufferfish } from '../assets/aquarium';
 
 function elementIsVisible (el) {
     var rect = el.getBoundingClientRect();
@@ -48,7 +49,6 @@ function spawnEel(container) {
     const light = `hsl(${Math.floor(Math.random()*360)}, 80%, 80%)`;
     const pulseTime = 600 + Math.random()*400;
     const pulses = Math.floor(2 + Math.random()*5);
-    console.log(dark, light);
     eel(container, {
         pos: [posX, posY],
         amplitude: 25,
@@ -69,8 +69,8 @@ function spawnEel(container) {
 }
 
 function animate(container) {
-    const jellies = 15;
-    const eels = 4;
+    const jellies = 5;
+    const eels = 5;
     for(var i = 0; i < jellies; i++){
         spawnJellyfish(container);
     }
@@ -78,6 +78,7 @@ function animate(container) {
         spawnEel(container);
     }
 
+    pufferfish(container, {});
 }
 
 export default {

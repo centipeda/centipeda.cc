@@ -331,3 +331,60 @@ export function eel(container, options) {
         duration: duration,
     });
 }
+
+export function pufferfish(container, options) {
+    const posOffset = [0,0];
+    const size = 15;
+    const units = 5;
+    const unitOffset = 20;
+
+    var pufferbox = document.createElement('div');
+    pufferbox.classList.add('pufferfish');
+    pufferbox.style.position = 'absolute';
+    pufferbox.style.left = `${posOffset[0]}px`;
+    pufferbox.style.top =  `${posOffset[1]}px`;
+    container.appendChild(pufferbox);
+
+    var puffer = [];
+    for(var r = 0; r < units; r++) {
+        for(var c = 0; c < units; c++) {
+            var b = square(size);
+            b.style.left = `${c*unitOffset}px`;
+            b.style.top = `${r*unitOffset}px`;
+            b.style.background = 'white';
+            pufferbox.append(b);
+            puffer.push(b);
+        }
+    }
+
+    anime({
+        targets: pufferbox,
+        translateY: 10,
+        loop: true,
+        direction: 'alternate',
+        duration: 1000,
+        easing: 'easeInOutSine',
+    });
+
+    anime({
+        targets: puffer,
+        borderRadius: anime.stagger('35%', {grid: [units, units], from: 'center'}),
+        scale: 1.6,
+        easing: 'easeOutSine',
+        translateY: [
+            {duration: 2000, value: anime.stagger(10, {grid: [units, units], from: 'center', axis: 'x'})},
+            {duration: 2000, value: anime.stagger(10, {grid: [units, units], from: 'center', axis: 'y'})},
+            {duration: 2000, value: anime.stagger(-10, {grid: [units, units], from: 'center', axis: 'x'})},
+            {duration: 2000, value: anime.stagger(0, {grid: [units, units], from: 'center', axis: 'y'})},
+        ],
+        translateX: [
+            {duration: 2000, value: anime.stagger(10, {grid: [units, units], from: 'center', axis: 'y'})},
+            {duration: 2000, value: anime.stagger(0, {grid: [units, units], from: 'center', axis: 'y'})},
+            {duration: 2000, value: anime.stagger(-10, {grid: [units, units], from: 'center', axis: 'y'})},
+            {duration: 2000, value: anime.stagger(10, {grid: [units, units], from: 'center', axis: 'x'})},
+        ],
+        delay: anime.stagger(250, {grid: [units, units], from: 'center'}),
+        duration: 4000,
+        loop: true,
+    });
+}
