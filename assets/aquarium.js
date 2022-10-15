@@ -235,60 +235,77 @@ export function jellyfish(container, options) {
 }
 
 export function eel(container, options) {
-    const amplitude = 25;
-    const frequency = 18;
+    // load options
+    const posOffset = options.pos === undefined ? [0,0] : options.pos;
 
-    const speed = 10;
-    const distance = 2000;
+    // eel movement
+    const amplitude = options.amplitude;
+    const frequency = options.frequency;
+    const speed = options.speed;
+    const distance = options.distance;
+    const angle = options.angle;
+
+    // eel sizing
+    const boxDelay = options.stretchFactor;
+    const boxOffset = options.partDistance;
+    const numparts = options.length;
+    const size = options.size;
+
+    // coloring
+    const darkColor = options.darkColor;
+    const lightColor = options.lightColor;
+    const pulses = options.pulses === undefined ? 3 : options.pulses;
+    const pulseTime = options.pulseTime === undefined ? 800 : options.pulseTime;
+    const pulseDelay = options.pulseSpeed === undefined ? 10 : options.pulseDelay;
+
+    // derive
     const duration = distance/(speed/100);
+    var colorframes = [];
+    for(var p = 0; p < pulses; p++) {
+        colorframes.push({
+            value: darkColor,
+            duration: pulseTime,
+            delay: anime.stagger(pulseDelay),
+            easing: 'easeInOutSine',
+        });
+        colorframes.push({
+            value: lightColor,
+            duration: pulseTime,
+            delay: anime.stagger(pulseDelay),
+            easing: 'easeInOutSine',
+        });
+    }
+    colorframes.push({
+        value: darkColor
+    })
 
-    const boxOffset = 3;
-    const boxDelay = 0.01;
-    const numparts = 12;
-    const size = 25;
-
-    const color = 'hsl(0, 80%, 0%)';
-
+    // create elements
     var eelbox = document.createElement('div');
     eelbox.classList.add('eel');
     eelbox.style.position = 'absolute';
+    eelbox.style.transform = `rotate(${angle}deg)`;
+    eelbox.style.left = `${posOffset[0]}px`;
+    eelbox.style.top =  `${posOffset[1]}px`;
     container.appendChild(eelbox);
     var eelparts = [];
     for(var i = 0; i < numparts; i++) {
         var e = square(size);
         e.style.left = `${i*boxOffset*-1}px`;
-        e.style.background = color;
+        e.style.background = darkColor;
         eelparts.push(e);
         eelbox.append(e);
     }
 
-    // generate sine wave keyframes
-    var keyframes = [];
-    const frames = 20;
-    for(var f = 0; f < frames; f++) {
-        const normalized = f / frames;
-        const rads = normalized * (2 * Math.PI);
-        var frame = {
-            value: amplitude*Math.sin(rads),
-            easing: 'linear',
-        };
-        keyframes.push(frame);
-    }
-
-    function eelDelay(elem, index, total) {
-        return function(t) {
-            return Math.max(0, t - index*boxDelay);
-        }
-    }
-
-    const angle = 45;
-    const [transX, transY] = rotateAbout([distance, amplitude*2], [0,0], 45);
-
+    // animate
     anime({
         targets: eelparts,
         translateX: {
             value: distance, 
-            easing: eelDelay
+            easing: function (elem, index, total) {
+                return function(t) {
+                    return Math.max(0, t - index*boxDelay);
+                }
+            }
         },
         translateY: {
             value: amplitude*2,
@@ -310,16 +327,7 @@ export function eel(container, options) {
                 }
             },
         },
-        background: [
-            {value: 'hsl(180, 80%, 10%)', duration: 700, delay: anime.stagger(30), easing: 'easeInOutSine'},
-            {value: 'hsl(240, 80%, 10%)', duration: 700, delay: anime.stagger(30), easing: 'easeInOutSine'},
-            {value: 'hsl(180, 80%, 40%)', duration: 700, delay: anime.stagger(30), easing: 'easeInOutSine'},
-            {value: 'hsl(240, 80%, 10%)', duration: 700, delay: anime.stagger(30), easing: 'easeInOutSine'},
-            {value: 'hsl(180, 80%, 10%)', duration: 700, delay: anime.stagger(30), easing: 'easeInOutSine'},
-            {value: 'hsl(240, 80%, 10%)', duration: 700, delay: anime.stagger(30), easing: 'easeInOutSine'},
-            {value: 'hsl(180, 80%, 40%)', duration: 700, delay: anime.stagger(30), easing: 'easeInOutSine'},
-            {value: 'hsl(240, 80%, 10%)', duration: 700, delay: anime.stagger(30), easing: 'easeInOutSine'},
-        ],
+        background: colorframes,
         duration: duration,
     });
 }

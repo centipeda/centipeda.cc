@@ -37,13 +37,47 @@ function spawnJellyfish(container) {
     });
 }
 
+function spawnEel(container) {
+    const xRange = 1500;
+    const yRange = 500;
+    const angle = 360*Math.random();
+    const parts = 7+Math.floor(Math.random()*20);
+    const posX = -xRange/2 + Math.random()*xRange;
+    const posY = -yRange/2 + Math.random()*yRange;
+    const dark = `hsl(${Math.floor(Math.random()*360)}, 20%, 5%)`;
+    const light = `hsl(${Math.floor(Math.random()*360)}, 80%, 80%)`;
+    const pulseTime = 600 + Math.random()*400;
+    const pulses = Math.floor(2 + Math.random()*5);
+    console.log(dark, light);
+    eel(container, {
+        pos: [posX, posY],
+        amplitude: 25,
+        frequency: 18,
+        speed: 10,
+        distance: 2000,
+        angle: angle,
+        stretchFactor: 0.008,
+        partDistance: 3,
+        length: parts,
+        size: 25,
+        darkColor: dark,
+        lightColor: light,
+        pulses: pulses,
+        pulseTime: pulseTime,
+        pulseDelay: 10
+    });
+}
+
 function animate(container) {
-    const jellies = 5;
+    const jellies = 15;
+    const eels = 4;
     for(var i = 0; i < jellies; i++){
         spawnJellyfish(container);
     }
+    for(var e = 0; e < eels; e++) {
+        spawnEel(container);
+    }
 
-    eel(container, {});
 }
 
 export default {
@@ -68,6 +102,6 @@ html,body {
 .holder {
     position: relative;
     top: 200px;
-    left: 0%;
+    left: 25%;
 }
 </style>
