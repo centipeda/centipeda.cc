@@ -2,6 +2,10 @@
 
 import anime from 'animejs';
 
+function useDefault(val, defaultValue) {
+    return val === undefined ? defaultValue : val;
+}
+
 function randomize(value, interval) {
     return (value - interval) + (Math.random() * interval);
 }
@@ -333,16 +337,28 @@ export function eel(container, options) {
 }
 
 export function pufferfish(container, options) {
-    const posOffset = [0,0];
-    const size = 15;
-    const units = 5;
-    const unitOffset = 20;
+    const posOffset = options.pos === undefined ? [0,0] : options.pos;
+    const size = options.size;
+    const units = options.units;
+    const unitOffset = size+1;
+
+    const maxRotation = useDefault(options.rotation, 360);
+    const spinOffset = useDefault(options.expansion, 5);
+    const animationTime = useDefault(options.duration, 20000);
+    const animationStagger = useDefault(options.stagger, 500);
+    const animationColors = useDefault(options.colors, [ '#ffffff' ]);
+
+    const spinTime = useDefault(options.revolutionTime, 30000);
+    const spinDirection = useDefault(options.revolution, 360);
 
     var pufferbox = document.createElement('div');
     pufferbox.classList.add('pufferfish');
     pufferbox.style.position = 'absolute';
+    pufferbox.style.width = `${size + unitOffset*(units-1)}px`;
+    pufferbox.style.height = `${size + unitOffset*(units-1)}px`;
     pufferbox.style.left = `${posOffset[0]}px`;
     pufferbox.style.top =  `${posOffset[1]}px`;
+    pufferbox.style.transformOrigin = 'center';
     container.appendChild(pufferbox);
 
     var puffer = [];
@@ -359,32 +375,39 @@ export function pufferfish(container, options) {
 
     anime({
         targets: pufferbox,
-        translateY: 10,
+        rotate: spinDirection, 
+        duration: spinTime, 
+        easing: 'linear',
         loop: true,
-        direction: 'alternate',
-        duration: 1000,
-        easing: 'easeInOutSine',
     });
 
     anime({
         targets: puffer,
-        borderRadius: anime.stagger('35%', {grid: [units, units], from: 'center'}),
-        scale: 1.6,
-        easing: 'easeOutSine',
-        translateY: [
-            {duration: 2000, value: anime.stagger(10, {grid: [units, units], from: 'center', axis: 'x'})},
-            {duration: 2000, value: anime.stagger(10, {grid: [units, units], from: 'center', axis: 'y'})},
-            {duration: 2000, value: anime.stagger(-10, {grid: [units, units], from: 'center', axis: 'x'})},
-            {duration: 2000, value: anime.stagger(0, {grid: [units, units], from: 'center', axis: 'y'})},
+        rotate: [
+            anime.stagger(maxRotation, { grid: [units, units], from: 'center'}),
+            anime.stagger(0, { grid: [units, units], from: 'center'}),
+            anime.stagger(maxRotation, { grid: [units, units], from: 'center'}),
+            ],
+        translateX: [ 
+            anime.stagger(spinOffset, {grid: [units, units], from: 'center', axis: 'x'}),
+            anime.stagger(0, {grid: [units, units], from: 'center', axis: 'x'}),
+            anime.stagger(spinOffset, {grid: [units, units], from: 'center', axis: 'x'}),
         ],
-        translateX: [
-            {duration: 2000, value: anime.stagger(10, {grid: [units, units], from: 'center', axis: 'y'})},
-            {duration: 2000, value: anime.stagger(0, {grid: [units, units], from: 'center', axis: 'y'})},
-            {duration: 2000, value: anime.stagger(-10, {grid: [units, units], from: 'center', axis: 'y'})},
-            {duration: 2000, value: anime.stagger(10, {grid: [units, units], from: 'center', axis: 'x'})},
+        translateY: [ 
+            anime.stagger(spinOffset, {grid: [units, units], from: 'center', axis: 'y'}),
+            anime.stagger(0, {grid: [units, units], from: 'center', axis: 'y'}),
+            anime.stagger(spinOffset, {grid: [units, units], from: 'center', axis: 'y'}),
         ],
-        delay: anime.stagger(250, {grid: [units, units], from: 'center'}),
-        duration: 4000,
+        borderRadius: [
+            anime.stagger('50%', {grid: [units, units], from: 'center'}),
+            anime.stagger('0%', {grid: [units, units], from: 'center'}),
+            anime.stagger('50%', {grid: [units, units], from: 'center'}),
+        ],
+        background: animationColors,
+        delay: anime.stagger(animationStagger, {grid: [units, units], from: 'center'}),
+        easing: 'linear',
+        duration: animationTime,
+        direction: 'alternate',
         loop: true,
     });
 }
