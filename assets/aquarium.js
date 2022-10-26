@@ -79,8 +79,8 @@ export function jellyfish(container, options) {
     var angle = options.angle;
     const radius = options.radius;
     const color = options.color;
-    const posOffset = options.pos === undefined ? [0,0] : options.pos;
-    const maxIters = options.iters === undefined ? 10 : options.iters;
+    const posOffset = useDefault(options.pos, [0,0]);
+    const maxIters = useDefault(options.iters, 10);
 
     const push = 45;
     const glide = 250;
@@ -120,7 +120,7 @@ export function jellyfish(container, options) {
     const [brX, brY] = rotateAbout([radius, 0], [0, 0], angle+120);
     backright.style.left = `${brX}px`;
     backright.style.top = `${brY}px`;
-    var svgs = [middle, front, backleft, backright ];
+    var svgs = [middle, front, backleft, backright];
     for(const s of svgs) { 
         jelly.appendChild(s);
     }
@@ -236,6 +236,8 @@ export function jellyfish(container, options) {
     }
 
     jellyMove();
+
+    return jelly;
 }
 
 export function eel(container, options) {
@@ -258,9 +260,9 @@ export function eel(container, options) {
     // coloring
     const darkColor = options.darkColor;
     const lightColor = options.lightColor;
-    const pulses = options.pulses === undefined ? 3 : options.pulses;
-    const pulseTime = options.pulseTime === undefined ? 800 : options.pulseTime;
-    const pulseDelay = options.pulseSpeed === undefined ? 10 : options.pulseDelay;
+    const pulses = useDefault(options.pulses, 3);
+    const pulseTime = useDefault(options.pulseTime, 800);
+    const pulseDelay = useDefault(options.pulseSpeed, 10);
 
     // derive
     const duration = distance/(speed/100);
@@ -334,10 +336,12 @@ export function eel(container, options) {
         background: colorframes,
         duration: duration,
     });
+
+    return eelbox;
 }
 
 export function pufferfish(container, options) {
-    const posOffset = options.pos === undefined ? [0,0] : options.pos;
+    const posOffset = useDefault(options.pos, [0,0]);
     const size = options.size;
     const units = options.units;
     const unitOffset = size+1;
@@ -410,4 +414,6 @@ export function pufferfish(container, options) {
         direction: 'alternate',
         loop: true,
     });
+
+    return pufferbox;
 }

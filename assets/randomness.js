@@ -1,33 +1,38 @@
 
-export function randn(min, max) {
+export function n(min, max) {
     return Math.floor(min+Math.random()*(max-min));
 }
 
-export function randf(min, max) {
+export function f(min, max) {
     return Math.floor(min+Math.random()*(max-min));
 }
 
-export function randPoint(xrange, yrange) {
+export function point(xrange, yrange) {
     const x = -xrange/2 + Math.random()*xrange;
     const y = -yrange/2 + Math.random()*yrange;
     return [x,y];
 }
 
-export function randhsl(s, l) {
+export function pointFrom(xrange, yrange, x, y)  {
+    const [xoff, yoff] = point(xrange, yrange);
+    return [x+xoff, y+yoff];
+}
+
+export function hsl(s, l) {
     return `hsl(${Math.floor(Math.random()*360)}, ${s}%, ${l}%)`;
 }
 
-export function randrgb() {
+export function rgb() {
     const r = Math.random()*255;
     const g = Math.random()*255;
     const b = Math.random()*255;
     return `rgba(${r}, ${g}, ${b}, 1)`;
 }
 
-export function randAngle() {
-    return randf(0, 360);
+export function angle() {
+    return f(0, 360);
 }
 
-export function randFlip() {
+export function flip() {
     return Math.random() < 0.5 ? -1 : 1;
 }

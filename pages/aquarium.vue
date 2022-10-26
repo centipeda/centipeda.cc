@@ -10,15 +10,7 @@
 <script>
 
 import { jellyfish, eel, pufferfish} from '@/assets/aquarium.js';
-import { 
-    randn, 
-    randf, 
-    randPoint, 
-    randhsl, 
-    randAngle, 
-    randrgb,
-    randFlip
-} from '@/assets/randomness.js';
+import * as rand from '@/assets/randomness.js';
 
 const pufferColors = [
             '#ffffff',
@@ -31,64 +23,54 @@ const pufferColors = [
             '#000000',
 ];
 
-function elementIsVisible (el) {
-    var rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
-    );
-}
-
 function spawnJellyfish(container) {
-    const size = randf(25, 75);
+    const size = rand.f(25, 75);
     const radius = size*0.6;
     jellyfish(container, {
         size: size,
-        angle: randAngle(),
+        angle: rand.angle(),
         radius: radius,
-        pos: randPoint(1500, 500),
-        color: randrgb()
+        pos: rand.point(1500, 500),
+        color: rand.rgb()
     });
 }
 
 function spawnEel(container) {
     eel(container, {
-        pos: randPoint(1500, 500),
+        pos: rand.point(1500, 500),
         amplitude: 25,
         frequency: 18,
         speed: 10,
         distance: 2000,
-        angle: randAngle(),
+        angle: rand.angle(),
         stretchFactor: 0.008,
         partDistance: 3,
-        length: randn(7, 30),
+        length: rand.n(7, 30),
         size: 25,
-        darkColor: randhsl(20, 5),
-        lightColor: randhsl(80, 80),
-        pulses: randn(2, 7),
-        pulseTime: randf(600, 1000),
+        darkColor: rand.hsl(20, 5),
+        lightColor: rand.hsl(80, 80),
+        pulses: rand.n(2, 7),
+        pulseTime: rand.f(600, 1000),
         pulseDelay: 10
     });
 }
 
 function spawnPufferfish(container) {
     pufferfish(container, {
-        pos: randPoint(1500, 500),
-        size: randf(10, 30),
-        units: randn(3, 7),
-        rotation: 360,
-        expansion: randf(5, 10),
-        duration: randf(10000, 40000),
-        revolutionTime: randf(5000, 30000),
-        revolution: 360*randFlip(),
+        pos: rand.point(1500, 500),
+        size: rand.f(10, 30),
+        units: rand.n(3, 7),
+        rotation: rand.f(180, 480),
+        expansion: rand.f(5, 10),
+        duration: rand.f(10000, 40000),
+        revolutionTime: rand.f(5000, 30000),
+        revolution: 360*rand.flip(),
         stagger: 500,
         colors: [
             'rgba(0, 0, 0, 0)',
-            randrgb(),
-            randrgb(),
-            randrgb(),
+            rand.rgb(),
+            rand.rgb(),
+            rand.rgb(),
             'rgba(0, 0, 0, 0)',
         ]
     });
