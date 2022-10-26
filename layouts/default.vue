@@ -106,7 +106,7 @@ function spawnPufferfish(container) {
 function monitor(container) {
     const initialSpawns = 5;
     const maxCreatures = 20;
-    const interval = 3000;
+    const interval = 6000;
     const spawnChance = .50;
     let creatures = [];
 
