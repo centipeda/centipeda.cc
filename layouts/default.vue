@@ -4,10 +4,10 @@
             <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 md:px-10 my-10">
                 <Nuxt />
             </div>
+            <div class="aquarium-upper"></div>
+            <div class="aquarium-container" ref="container"></div>
+            <div class="footer text-xs">;)</div>
         </div>
-        <div class="aquarium-upper"></div>
-        <div class="aquarium-container" ref="container"></div>
-        <div class="footer text-xs">;)</div>
     </div>
 </template>
 
@@ -162,7 +162,9 @@ export default {
     }
 
     .aquarium-upper {
-        z-index: 101;
+        position: absolute;
+        width: 100%;
+        z-index: 99;
         height: 50vh;
         background: linear-gradient(0deg, 
             var(--bg-main-color) 0%, 
@@ -175,11 +177,14 @@ export default {
     }
 
     .aquarium-container {
-        height: 100vh;
+        width: 100%;
+        min-height: 100vh;
+        height: 120%;
         z-index: 50;
         display: flex;
-        position: relative;
+        position: absolute;
         overflow: hidden;
+        background: var(--bg-main-color);
     }
 
     .serif-font {
@@ -195,7 +200,7 @@ export default {
         color: var(--content-txt-color);
         /* background-color: hsl(210deg, 68%, 80%); */
         border: 3px solid black;
-        z-index: 100;
+        z-index: 200;
     }
 
     .content-outer {
@@ -217,14 +222,15 @@ export default {
     }
 
     .footer {
+        position: absolute;
         width: 10px;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
         bottom: 0;
-        transform: translateY(-25px);
         height: 0;
-        color: lightblue;
+        color: var(--content-bg-color);
+        z-index: 200;
     }
 
 </style>
