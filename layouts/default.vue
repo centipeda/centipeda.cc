@@ -2,29 +2,11 @@
     <div class="bg">
         <div class="content-outer flex justify-center">
             <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 md:px-10 my-10">
-                <h1 class="mt-10 title mono-font text-3xl font-medium">
-                    <a href="/">centipeda.cc</a> / <a href="/">about</a>
-                </h1>
-                <div class="navbar mb-8 mt-5">
-                    <div class="flex flex-row">
-                        <a class="basis-0 grow text-center nav-item" href="/"> about </a>
-                        <a class="basis-0 grow text-center nav-item" href="/"> projects </a>
-                        <a class="basis-0 grow text-center nav-item" href="https://github.com/centipeda">github</a>
-                        <a class="basis-0 grow text-center nav-item" href="/"> resume </a>
-                    </div>
-                    <div class="flex flex-row">
-                        <a class="basis-0 grow text-center nav-item" href="/aquarium">aquarium</a>
-                        <a class="basis-0 grow text-center nav-item" href="https://cnti.cc">pastebin</a>
-                        <a class="basis-0 grow text-center nav-item" href="https://spells.centipeda.cc">spellbook</a>
-                        <a class="basis-0 grow text-center nav-item" href="/">other</a>
-                    </div>
-                </div>
                 <Nuxt />
             </div>
         </div>
         <div class="aquarium-upper"></div>
         <div class="aquarium-container" ref="container"></div>
-
         <div class="footer text-xs">;)</div>
     </div>
 </template>
@@ -35,16 +17,6 @@ import * as rand from '@/assets/randomness.js';
 
 const xSpawnRange = 500;
 const ySpawnRange = 500;
-
-function elementIsVisible (el) {
-    var rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
-    );
-}
 
 function spawnPoint(container) {
     return rand.pointFrom(xSpawnRange, ySpawnRange, container.offsetWidth/2, container.offsetHeight/2);
@@ -144,6 +116,11 @@ export default {
             monitor(this.$refs.container);
         }
     },
+    data() {
+        return {
+            page: 'default'
+        }
+    }
 }
 
 </script>
@@ -151,6 +128,10 @@ export default {
 <style>
 
     :root {
+        --content-bg-color: hsl(209, 29%, 75%);
+        --content-link-color: hsl(209, 79%, 40%);
+        --content-txt-color: black;
+
         --bg-main-color: rgba(2, 0, 36, 1);
         /* upper water colors */
         --sky-color: rgba(150, 212, 253, 1);
@@ -160,6 +141,14 @@ export default {
         --sky-portion: 75%;
         --deep-portion: 30%;
         --border-portion: calc(var(--sky-portion) - 0.25%);
+    }
+
+    a {
+        color: var(--content-link-color);
+    }
+
+    a:hover {
+        text-decoration-line: underline;
     }
 
     html,body { 
@@ -202,7 +191,8 @@ export default {
     }
 
     .content {
-        background-color: lightgray;
+        background-color: var(--content-bg-color);
+        color: var(--content-txt-color);
         /* background-color: hsl(210deg, 68%, 80%); */
         border: 3px solid black;
         z-index: 100;
@@ -218,12 +208,12 @@ export default {
     }
 
     .nav-item {
-        transition: .1s;
+        transition: .05s;
     }
 
     .nav-item:hover {
-        color: white;
-        background-color: black;
+        color: var(--content-bg-color);
+        background-color: var(--content-txt-color);
     }
 
     .footer {
