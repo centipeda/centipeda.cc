@@ -25,7 +25,7 @@
         <div class="aquarium-upper"></div>
         <div class="aquarium-container" ref="container"></div>
 
-        <p class="footer mb-2 text-xs">;)</p>
+        <div class="footer text-xs">;)</div>
     </div>
 </template>
 
@@ -104,12 +104,17 @@ function spawnPufferfish(container) {
 }
 
 function monitor(container) {
+    const initialSpawns = 5;
     const maxCreatures = 20;
-    const interval = 5000;
+    const interval = 3000;
     const spawnChance = .50;
     let creatures = [];
 
-    setInterval(function() {
+    for(let i = 0; i < initialSpawns; i++) {
+        spawnCheck();
+    }
+
+    function spawnCheck() {
         if(creatures.length > maxCreatures) {
             creatures[0].remove();
             creatures.shift();
@@ -128,7 +133,9 @@ function monitor(container) {
             }
             creatures.push(e);
         }
-    }, interval);
+    }
+
+    setInterval(spawnCheck, interval);
 }
 
 export default {
@@ -220,8 +227,13 @@ export default {
     }
 
     .footer {
+        width: 10px;
+        margin-left: auto;
+        margin-right: auto;
         text-align: center;
         bottom: 0;
+        transform: translateY(-25px);
+        height: 0;
         color: lightblue;
     }
 
