@@ -1,7 +1,7 @@
 <template>
     <div class="bg w-100 h-100">
         <div class="content-outer flex justify-center">
-            <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 md:px-10 my-10" ref="blocker">
+            <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 md:px-10 my-12 pb-5" ref="blocker">
                 <Nuxt />
             </div>
             <div class="aquarium-upper"></div>
@@ -160,8 +160,8 @@ export default {
         --surface-color: black;
         --shallow-color: #053b99;
         --deep-color: rgba(48, 48, 130, 1);
-        --sky-portion: 75%;
-        --deep-portion: 60%;
+        --sky-portion: 100%;
+        --deep-portion: 50%;
         --border-portion: calc(var(--sky-portion) - 0.25%);
     }
 
@@ -177,6 +177,7 @@ export default {
 
     html,body { 
         font-family: "Source Sans Pro";
+        font-size: 12pt;
         min-height: 100%;
         overflow: auto;
     }
@@ -233,6 +234,7 @@ export default {
         color: var(--content-txt-color);
         /* background-color: hsl(210deg, 68%, 80%); */
         border: 3px solid black;
+        border-radius: 7px;
         z-index: 200;
     }
 
