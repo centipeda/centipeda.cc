@@ -1,5 +1,5 @@
 <template>
-<div class="navbar mb-8 mt-5">
+<div class="border-black border mb-8 mt-5">
     <div class="flex flex-row">
         <a class="basis-0 grow text-center" href="/"> about </a>
         <a class="basis-0 grow text-center" href="/projects"> projects </a>
@@ -24,10 +24,10 @@ export default {
 <style scoped>
 a {
     color: var(--content-txt-color);
+    text-decoration-line: none;
 }
 
 a:hover {
-    text-decoration-line: none;
     color: var(--content-bg-color);
     background-color: var(--content-txt-color);
     font-weight: 600;

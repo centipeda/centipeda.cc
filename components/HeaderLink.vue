@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style scoped>
+a {
+    text-decoration-line: none;
+}
+
 a,a:hover {
     color: var(--content-txt-color);
 }

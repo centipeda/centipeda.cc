@@ -32,18 +32,15 @@
             <li>
                 We did an analysis of the 
                 <a href="https://www.kaggle.com/osmi/mental-health-in-tech-2016">2016 OSMI Mental Health in Tech Survey</a> and 
-                <a href="https://open-source-grilled-cheese.github.io/data-club-hackathon/">presented our findings as a website</a>
+                <a href="https://open-source-grilled-cheese.github.io/data-club-hackathon/">presented our findings as a website</a>.
             </li>
             <li>
                 We made <a href="https://github.com/open-source-grilled-cheese/new-perspective">New Perspectives</a>, a Chrome extension that used 
                 IBM Watson to analyze news articles and find articles on the same topic from websites elsewhere on the internet that may have differing
-                biases
+                biases.
             </li>
         </ul>
         
-        <br/> <br/> <br/> <br/> <br/>
-        <br/> <br/> <br/> <br/> <br/>
-        <br/> <br/> <br/> <br/> <br/>
     </div>
   </div>
 </template>

@@ -1,12 +1,16 @@
 <template>
-    <div class="bg">
+    <div class="bg w-100 h-100">
         <div class="content-outer flex justify-center">
             <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 md:px-10 my-10" ref="blocker">
                 <Nuxt />
             </div>
             <div class="aquarium-upper"></div>
-            <div class="aquarium-container" ref="container"></div>
-            <div class="footer text-xs">;)</div>
+            <div class="aquarium-container">
+                <div ref="container"></div>
+                <div class="footer absolute text-xs left-0 right-0 bottom-0 mx-auto w-fit mb-2">
+                    Nothing to see here.
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -145,9 +149,9 @@ export default {
 <style>
 
     :root {
-        --content-bg-color: hsl(209, 29%, 75%);
-        --content-link-color: hsl(209, 79%, 40%);
-        --content-link-hl-color: hsl(209, 79%, 20%);
+        --content-bg-color: hsl(209, 49%, 75%);
+        --content-link-color: hsl(239, 69%, 40%);
+        --content-link-hl-color: hsl(239, 79%, 20%);
         --content-txt-color: black;
 
         --bg-main-color: rgba(2, 0, 36, 1);
@@ -157,26 +161,37 @@ export default {
         --shallow-color: #053b99;
         --deep-color: rgba(48, 48, 130, 1);
         --sky-portion: 75%;
-        --deep-portion: 30%;
+        --deep-portion: 60%;
         --border-portion: calc(var(--sky-portion) - 0.25%);
     }
 
     a {
         color: var(--content-link-color);
+        text-decoration-line: underline;
+        text-underline-offset: 2px;
     }
 
     a:hover {
-        text-decoration-line: underline;
         color: var(--content-link-hl-color);
     }
 
     html,body { 
         font-family: "Source Sans Pro";
+        min-height: 100%;
         overflow: auto;
+    }
+
+    .serif-font {
+        font-family: 'Source Serif Pro';
+    }
+
+    .mono-font {
+        font-family: 'Source Code Pro';
     }
 
     .bg {
         background: var(--bg-main-color);
+        height: max-content;
         overflow: hidden;
     }
 
@@ -184,7 +199,13 @@ export default {
         position: absolute;
         width: 100%;
         z-index: 99;
-        height: 50vh;
+        height: 25vh;
+        background: linear-gradient(0deg, 
+            var(--bg-main-color) 0%, 
+            var(--deep-color) var(--deep-portion),
+            var(--shallow-color) var(--sky-portion)
+        );
+        /*
         background: linear-gradient(0deg, 
             var(--bg-main-color) 0%, 
             var(--deep-color) var(--deep-portion),
@@ -193,6 +214,7 @@ export default {
             var(--surface-color) var(--sky-portion), 
             var(--sky-color) var(--sky-portion), 
             var(--sky-color) 100%);
+        */
     }
 
     .aquarium-container {
@@ -204,14 +226,6 @@ export default {
         position: absolute;
         overflow: hidden;
         background: var(--bg-main-color);
-    }
-
-    .serif-font {
-        font-family: 'Source Serif Pro';
-    }
-
-    .mono-font {
-        font-family: 'Source Code Pro';
     }
 
     .content {
@@ -227,18 +241,7 @@ export default {
         position: absolute;
     }
 
-    .navbar {
-        border: 1px solid black; 
-    }
-
     .footer {
-        position: absolute;
-        width: 10px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        bottom: 0;
-        height: 0;
         color: var(--content-bg-color);
         z-index: 200;
     }
