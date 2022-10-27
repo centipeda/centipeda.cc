@@ -1,7 +1,7 @@
 <template>
     <div class="bg">
         <div class="content-outer flex justify-center">
-            <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 md:px-10 my-10">
+            <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 md:px-10 my-10" ref="blocker">
                 <Nuxt />
             </div>
             <div class="aquarium-upper"></div>
@@ -15,14 +15,31 @@
 import { jellyfish, eel, pufferfish} from '@/assets/aquarium.js';
 import * as rand from '@/assets/randomness.js';
 
-const xSpawnRange = 500;
+const xSpawnRange = 1500;
 const ySpawnRange = 500;
+
+// https://stackoverflow.com/a/53942619
+function isVisible(domElement) {
+  return new Promise(resolve => {
+    const o = new IntersectionObserver(([entry]) => {
+      resolve(entry.intersectionRatio === 1);
+      o.disconnect();
+    });
+    o.observe(domElement);
+  });
+}
 
 function spawnPoint(container) {
     return rand.pointFrom(xSpawnRange, ySpawnRange, container.offsetWidth/2, container.offsetHeight/2);
 }
 
-function spawnJellyfish(container) {
+function spawnPointVisible(container, blankAreaWidth) {
+    const [xoff,yoff] = rand.point(xSpawnRange-blankAreaWidth/2, ySpawnRange);
+    const pos = [xoff+blankAreaWidth+container.offsetWidth/2, yoff+container.offsetHeight/2];
+    return pos;
+}
+
+function spawnJellyfish(container, blocker) {
     const size = rand.f(20, 30);
     const radius = size*0.6;
     return jellyfish(container, {
@@ -34,14 +51,16 @@ function spawnJellyfish(container) {
     });
 }
 
-function spawnEel(container) {
+function spawnEel(container, blocker) {
+    const pos = spawnPoint(container);
+    const angle = rand.angle();
     return eel(container, {
-        pos: spawnPoint(container),
+        pos: pos,
         amplitude: 25,
         frequency: 18,
         speed: 10,
         distance: 2000,
-        angle: rand.angle(),
+        angle: angle,
         stretchFactor: 0.008,
         partDistance: 2,
         length: rand.n(7, 30),
@@ -54,9 +73,9 @@ function spawnEel(container) {
     });
 }
 
-function spawnPufferfish(container) {
+function spawnPufferfish(container, blocker) {
     return pufferfish(container, {
-        pos: spawnPoint(container),
+        pos: spawnPointVisible(container, blocker.offsetWidth),
         size: rand.f(7, 15),
         units: rand.n(3, 7),
         rotation: rand.f(180, 480),
@@ -75,35 +94,33 @@ function spawnPufferfish(container) {
     });
 }
 
-function monitor(container) {
-    const initialSpawns = 5;
-    const maxCreatures = 20;
-    const interval = 6000;
-    const spawnChance = .50;
+function monitor(container, blocker) {
+    const spawners = [spawnJellyfish, spawnEel, spawnPufferfish];
+    const minCreatures = 5;
+    const maxCreatures = 15;
+    const interval = 3000;
+    const spawnChance = .75;
     let creatures = [];
 
-    for(let i = 0; i < initialSpawns; i++) {
+    for(let i = 0; i < minCreatures; i++) {
         spawnCheck();
     }
 
-    function spawnCheck() {
+    async function spawnCheck() {
+        console.log(creatures);
         if(creatures.length > maxCreatures) {
-            creatures[0].remove();
+            console.log('truncated');
+            let last = creatures[0];
+            container.removeChild(last);
+            last.remove();
             creatures.shift();
         }
 
         // spawn new
         if(Math.random() < spawnChance) {
-            let t = Math.random()*3;
-            let e;
-            if(t < 1) {
-                e = spawnJellyfish(container);
-            } else if(t > 1 && t < 2) {
-                e = spawnEel(container);
-            } else if(t > 2 && t < 3) {
-                e = spawnPufferfish(container);
-            }
-            creatures.push(e);
+            const choice = Math.floor(Math.random()*spawners.length);
+            const entity = spawners[choice](container, blocker);
+            creatures.push(entity);
         }
     }
 
@@ -113,7 +130,7 @@ function monitor(container) {
 export default {
     mounted() {
         if(process.browser) {
-            monitor(this.$refs.container);
+            monitor(this.$refs.container, this.$refs.blocker);
         }
     },
     data() {
@@ -130,6 +147,7 @@ export default {
     :root {
         --content-bg-color: hsl(209, 29%, 75%);
         --content-link-color: hsl(209, 79%, 40%);
+        --content-link-hl-color: hsl(209, 79%, 20%);
         --content-txt-color: black;
 
         --bg-main-color: rgba(2, 0, 36, 1);
@@ -149,6 +167,7 @@ export default {
 
     a:hover {
         text-decoration-line: underline;
+        color: var(--content-link-hl-color);
     }
 
     html,body { 
@@ -210,15 +229,6 @@ export default {
 
     .navbar {
         border: 1px solid black; 
-    }
-
-    .nav-item {
-        transition: .05s;
-    }
-
-    .nav-item:hover {
-        color: var(--content-bg-color);
-        background-color: var(--content-txt-color);
     }
 
     .footer {

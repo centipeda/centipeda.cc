@@ -27,7 +27,7 @@
         <ul class="list-disc list-inside pl-2">
             <li>
                 <a href="https://github.com/open-source-grilled-cheese/eagle-eyes">Eagle Eyes</a> is an Android birdwatching app made in Flutter in 48 hours for 
-                the 2022 University of Notre Dame Hesburgh Hackathon (<a href="https://hackathon.library.nd.edu/#winners">we placed first!</a>)
+                the 2022 University of Notre Dame Hesburgh Hackathon (<a href="https://www.library.nd.edu/news/hesburgh-libraries-announces-2022-hackathon-winners">we placed first!</a>)
             </li>
             <li>
                 We did an analysis of the 

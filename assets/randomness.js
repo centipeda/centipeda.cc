@@ -29,8 +29,10 @@ export function rgb() {
     return `rgba(${r}, ${g}, ${b}, 1)`;
 }
 
-export function angle() {
-    return f(0, 360);
+export function angle(min, max) {
+    min = min === undefined ? 0 : min;
+    max = max === undefined ? 360 : max;
+    return f(min, max);
 }
 
 export function flip() {

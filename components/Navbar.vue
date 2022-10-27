@@ -1,16 +1,16 @@
 <template>
 <div class="navbar mb-8 mt-5">
     <div class="flex flex-row">
-        <a class="basis-0 grow text-center nav-item" href="/"> about </a>
-        <a class="basis-0 grow text-center nav-item" href="/projects"> projects </a>
-        <a class="basis-0 grow text-center nav-item" href="https://github.com/centipeda">github</a>
-        <a class="basis-0 grow text-center nav-item" href="/"> resume </a>
+        <a class="basis-0 grow text-center" href="/"> about </a>
+        <a class="basis-0 grow text-center" href="/projects"> projects </a>
+        <a class="basis-0 grow text-center" href="https://github.com/centipeda">github</a>
+        <a class="basis-0 grow text-center" href="#"> résumé </a>
     </div>
     <div class="flex flex-row">
-        <a class="basis-0 grow text-center nav-item" href="/aquarium">aquarium</a>
-        <a class="basis-0 grow text-center nav-item" href="https://cnti.cc">pastebin</a>
-        <a class="basis-0 grow text-center nav-item" href="https://spells.centipeda.cc">spellbook</a>
-        <a class="basis-0 grow text-center nav-item" href="/">other</a>
+        <a class="basis-0 grow text-center" href="/aquarium">aquarium</a>
+        <a class="basis-0 grow text-center" href="/photos">photos</a>
+        <a class="basis-0 grow text-center" href="https://spells.centipeda.cc">spellbook</a>
+        <a class="basis-0 grow text-center" href="#">other</a>
     </div>
 </div>
 </template>
@@ -28,5 +28,8 @@ a {
 
 a:hover {
     text-decoration-line: none;
+    color: var(--content-bg-color);
+    background-color: var(--content-txt-color);
+    font-weight: 600;
 }
 </style>
