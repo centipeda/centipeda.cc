@@ -3,6 +3,7 @@
     <a class="hover:underline" href="/">centipeda.cc</a> 
     / 
     <a class="hover:underline" :href="url">{{title}}</a>
+    $<span class="blink">_</span>
 </h1>
 </template>
 
@@ -20,4 +21,15 @@ a {
 a,a:hover {
     color: var(--content-txt-color);
 }
+
+.blink {
+    animation: blink-animation 1.5s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
 </style>

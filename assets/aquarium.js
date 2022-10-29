@@ -417,3 +417,12 @@ export function pufferfish(container, options) {
 
     return pufferbox;
 }
+
+export function kill(container, entity) {
+    container.removeChild(entity);
+    anime.remove(entity)
+    for(let child of entity.children) {
+        anime.remove(child);
+    }
+    entity.remove();
+}

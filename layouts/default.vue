@@ -1,7 +1,7 @@
 <template>
     <div class="bg w-100 h-100">
         <div class="content-outer flex justify-center">
-            <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 md:px-10 my-12 pb-5" ref="blocker">
+            <div class="content sm:w-10/12 md:w-2/3 lg:w-7/12 xl:w-5/12 min-h-screen px-2 sm:px-10 my-12 pb-5" ref="blocker">
                 <Nuxt />
             </div>
             <div class="aquarium-upper"></div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { jellyfish, eel, pufferfish} from '@/assets/aquarium.js';
+import { jellyfish, eel, pufferfish, kill } from '@/assets/aquarium.js';
 import * as rand from '@/assets/randomness.js';
 
 const xSpawnRange = 1500;
@@ -102,7 +102,7 @@ function monitor(container, blocker) {
     const spawners = [spawnJellyfish, spawnEel, spawnPufferfish];
     const minCreatures = 5;
     const maxCreatures = 15;
-    const interval = 3000;
+    const interval = 3600;
     const spawnChance = .75;
     let creatures = [];
 
@@ -111,12 +111,11 @@ function monitor(container, blocker) {
     }
 
     async function spawnCheck() {
-        console.log(creatures);
+        // console.log(creatures);
         if(creatures.length > maxCreatures) {
-            console.log('truncated');
+            // console.log('truncated');
             let last = creatures[0];
-            container.removeChild(last);
-            last.remove();
+            kill(container, last);
             creatures.shift();
         }
 
@@ -163,6 +162,12 @@ export default {
         --sky-portion: 100%;
         --deep-portion: 50%;
         --border-portion: calc(var(--sky-portion) - 0.25%);
+
+        --ocean-gradient: 0deg, 
+            var(--bg-main-color) 0%, 
+            var(--deep-color) var(--deep-portion),
+            var(--shallow-color) var(--sky-portion)
+        ;
     }
 
     a {
@@ -201,11 +206,7 @@ export default {
         width: 100%;
         z-index: 99;
         height: 25vh;
-        background: linear-gradient(0deg, 
-            var(--bg-main-color) 0%, 
-            var(--deep-color) var(--deep-portion),
-            var(--shallow-color) var(--sky-portion)
-        );
+        background: linear-gradient(var(--ocean-gradient));
         /*
         background: linear-gradient(0deg, 
             var(--bg-main-color) 0%, 
@@ -232,9 +233,8 @@ export default {
     .content {
         background-color: var(--content-bg-color);
         color: var(--content-txt-color);
-        /* background-color: hsl(210deg, 68%, 80%); */
-        border: 3px solid black;
-        border-radius: 7px;
+        border: 6px solid black;
+        border-image: repeating-linear-gradient(180deg, var(--bg-main-color), var(--deep-color), var(--shallow-color)) 20;
         z-index: 200;
     }
 

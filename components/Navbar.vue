@@ -1,5 +1,5 @@
 <template>
-<div class="border-black border mb-8 mt-5">
+<div class="navbar mb-8 mt-5">
     <div class="flex flex-row">
         <a class="basis-0 grow text-center" href="/"> about </a>
         <a class="basis-0 grow text-center" href="/projects"> projects </a>
@@ -22,14 +22,20 @@ export default {
 </script>
 
 <style scoped>
+.navbar {
+    border-color: var(--bg-main-color);
+    border-width: 1px;
+    border-style: solid;
+}
+
 a {
-    color: var(--content-txt-color);
+    color: var(--bg-main-color);
+    background-color: var(--content-bg-color);
     text-decoration-line: none;
 }
 
 a:hover {
     color: var(--content-bg-color);
-    background-color: var(--content-txt-color);
-    font-weight: 600;
+    background-color: var(--bg-main-color);
 }
 </style>
