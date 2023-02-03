@@ -88,3 +88,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# static uploaded files
+dist/dl
+static/dl
