@@ -92,3 +92,4 @@ sw.*
 # static uploaded files
 dist/dl
 static/dl
+dl

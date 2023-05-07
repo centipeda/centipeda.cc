@@ -4,7 +4,7 @@
         <a class="basis-0 grow text-center" href="/"> about </a>
         <a class="basis-0 grow text-center" href="/projects"> projects </a>
         <a class="basis-0 grow text-center" href="https://github.com/centipeda">github</a>
-        <a class="basis-0 grow text-center" href="#"> résumé </a>
+        <a class="basis-0 grow text-center" href="/dl/resume/joshua_cepeda_resume.pdf"> résumé </a>
     </div>
     <div class="flex flex-row">
         <a class="basis-0 grow text-center" href="/aquarium">aquarium</a>
