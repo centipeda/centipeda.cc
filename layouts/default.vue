@@ -19,7 +19,7 @@
 import { jellyfish, eel, pufferfish, kill } from '@/assets/aquarium.js';
 import * as rand from '@/assets/randomness.js';
 
-const xSpawnRange = 1500;
+const xSpawnRange = 2000;
 const ySpawnRange = 500;
 
 // https://stackoverflow.com/a/53942619
@@ -102,8 +102,8 @@ function monitor(container, blocker) {
     const spawners = [spawnJellyfish, spawnEel, spawnPufferfish];
     const minCreatures = 5;
     const maxCreatures = 15;
-    const interval = 3600;
-    const spawnChance = .75;
+    const interval = 2500;
+    const spawnChance = 1;
     let creatures = [];
 
     for(let i = 0; i < minCreatures; i++) {
@@ -111,9 +111,7 @@ function monitor(container, blocker) {
     }
 
     async function spawnCheck() {
-        // console.log(creatures);
         if(creatures.length > maxCreatures) {
-            // console.log('truncated');
             let last = creatures[0];
             kill(container, last);
             creatures.shift();
@@ -207,16 +205,6 @@ export default {
         z-index: 99;
         height: 25vh;
         background: linear-gradient(var(--ocean-gradient));
-        /*
-        background: linear-gradient(0deg, 
-            var(--bg-main-color) 0%, 
-            var(--deep-color) var(--deep-portion),
-            var(--shallow-color) var(--border-portion), 
-            var(--surface-color) var(--border-portion), 
-            var(--surface-color) var(--sky-portion), 
-            var(--sky-color) var(--sky-portion), 
-            var(--sky-color) 100%);
-        */
     }
 
     .aquarium-container {

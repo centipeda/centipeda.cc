@@ -3,7 +3,7 @@
     <a class="hover:underline" href="/">centipeda.cc</a> 
     / 
     <a class="hover:underline" :href="url">{{title}}</a>
-    $<span class="blink">_</span>
+    <!--$<span class="blink">_</span>-->
 </h1>
 </template>
 

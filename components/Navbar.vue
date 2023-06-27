@@ -10,16 +10,10 @@
         <a class="basis-0 grow text-center" href="/aquarium">aquarium</a>
         <a class="basis-0 grow text-center" href="/photos">photos</a>
         <a class="basis-0 grow text-center" href="https://spells.centipeda.cc">spellbook</a>
-        <a class="basis-0 grow text-center" href="#">other</a>
+        <a class="basis-0 grow text-center" href="/text"></a>
     </div>
 </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
 
 <style scoped>
 .navbar {
