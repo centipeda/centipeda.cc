@@ -10,7 +10,7 @@
         <a class="basis-0 grow text-center" href="/aquarium">aquarium</a>
         <a class="basis-0 grow text-center" href="/photos">photos</a>
         <a class="basis-0 grow text-center" href="https://spells.centipeda.cc">spellbook</a>
-        <a class="basis-0 grow text-center" href="/text"></a>
+        <a class="basis-0 grow text-center" href="/status">uptime</a>
     </div>
 </div>
 </template>
