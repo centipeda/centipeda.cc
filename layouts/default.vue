@@ -8,7 +8,7 @@
             <div class="aquarium-container">
                 <div ref="container"></div>
                 <div class="footer absolute text-xs left-0 right-0 bottom-0 mx-auto w-fit mb-2">
-                    <p>くコ:彡</p>
+                    <p>くコ:彡&nbsp;<a href="/text">have a poem</a>&nbsp;くコ:彡</p>
                 </div>
             </div>
         </div>
