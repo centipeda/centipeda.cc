@@ -180,7 +180,7 @@ export default {
 
     html,body { 
         font-family: "Source Sans Pro";
-        font-size: 12pt;
+        font-size: 14pt;
         min-height: 100%;
         overflow: auto;
     }
